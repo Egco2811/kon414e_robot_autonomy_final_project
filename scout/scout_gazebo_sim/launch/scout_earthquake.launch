@@ -1,0 +1,32 @@
+<launch>
+
+    <arg name="robot_namespace" default="/"/>
+
+    <!-- Load the surrounding environment into Gazebo -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="/home/berkay/catkin_ws/src/scout/scout_gazebo_sim/worlds/gazebo_models_worlds_collection/worlds/office_earthquake.world"/>
+        <arg name="paused" value="true"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/>
+        <arg name="debug" value="false"/>
+        <arg name="verbose" value="true"/>
+    </include>
+    
+    <!-- Spawn the Scout Mini robot -->        
+    <include file="$(find scout_gazebo_sim)/launch/spawn_scout_mini.launch">
+        <arg name="x" value="3.0"/>
+        <arg name="y" value="-3.0"/>
+        <arg name="z" value="3.0"/>
+    </include>
+
+    <!-- Launch RViz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find scout_description)/rviz/navigation.rviz" />
+
+    <!-- Launch Odometry Publisher -->
+    <node name="gazebo_odometry_publisher" pkg="circle_motion" type="odom" output="screen">
+        <param name="robot_name" value="scout/"/> <!-- Robot name in Gazebo -->
+    </node>
+
+</launch>
+
