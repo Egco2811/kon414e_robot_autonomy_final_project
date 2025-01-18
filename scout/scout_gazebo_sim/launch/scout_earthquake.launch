@@ -4,7 +4,7 @@
 
     <!-- Load the surrounding environment into Gazebo -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="world_name" value="$(find gazebo_ros)/worlds/gazebo_models_worlds_collection/worlds/office_earthquake.world"/>
+        <arg name="world_name" value="$(find scout_gazebo_sim)/worlds/gazebo_models_worlds_collection/worlds/office_earthquake.world"/>
         <arg name="paused" value="true"/>
         <arg name="use_sim_time" value="true"/>
         <arg name="gui" value="true"/>
